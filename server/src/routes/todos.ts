@@ -3,6 +3,7 @@ import { getTodos, addTodo, updateTodo, deleteTodo } from '../controllers/todos'
 import {auth} from "../middlewares/auth";
 
 const router: Router = Router();
+//const router:any =Router();
 
 router.get('/', getTodos);
 
@@ -12,4 +13,4 @@ router.patch('/:id', updateTodo);
 
 router.delete('/:id', deleteTodo);
 
-export default router
+export default router;

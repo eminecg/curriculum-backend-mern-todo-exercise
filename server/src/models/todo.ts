@@ -1,8 +1,20 @@
-import { model, Schema } from 'mongoose'
+//import { model, Schema } from 'mongoose';
+import mongoose from 'mongoose';
+import Schema from 'mongoose';
 
 //TODO: Add types for schema
 
-const todoSchema: Schema = new Schema({
+
+
+interface ITodo{
+
+    name: string,
+    description:string,
+    status :boolean,
+    user:  mongoose.Types.ObjectId,
+}
+
+const todoSchema = new mongoose.Schema<ITodo>({
     name: {
         type: String,
         required: true
@@ -22,5 +34,23 @@ const todoSchema: Schema = new Schema({
     }
 }, { timestamps: true })
 
+/*
+const hider =
+  (props: (keyof ITodo)[]) =>
+  (doc: ITodo, ret: Partial<ITodo>, options: any) => {
+    props.forEach((prop: keyof ITodo) => {
+      if (ret.hasOwnProperty(prop)) delete ret[prop];
+    });
+    return ret;
+  };
 
-export default model('Todo', todoSchema)
+todoSchema.set('toObject', {
+  virtuals: true,
+  transform: hider(['user', 'user']),
+});
+todoSchema.set('toJSON', { virtuals: true, transform: hider(['user']) });
+
+*/
+
+
+export default mongoose.model<ITodo>('Todo', todoSchema);

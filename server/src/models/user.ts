@@ -1,7 +1,16 @@
 import {model, Schema} from 'mongoose'
 
+interface IUser{
+
+    fullName?: string,
+    email?:string,
+    pasword :string,
+    timestamps:boolean,
+}
+
+
 //TODO: Add types for schema
-const userSchema: Schema = new Schema({
+const userSchema = new Schema <IUser>({
     fullName: {
         type: String,
         required: true
